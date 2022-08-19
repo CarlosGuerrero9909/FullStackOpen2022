@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 
-/*Funcion sin parametros que se asigna a una variable const App*/
+/*Funcion flecha sin parametros llamada App*/
 /*Como la esta funcion tiene solo una expresion se puede escribir sin el return*/
 /*const App = () => ( 
   <div>
