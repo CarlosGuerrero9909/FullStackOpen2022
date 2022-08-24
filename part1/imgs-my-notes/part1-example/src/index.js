@@ -1,77 +1,62 @@
-import React from 'react'
+import React, {useState}from 'react'
 import ReactDOM from 'react-dom'
+import './index.css' 
 
+const History = (props) => {
+  if (props.allClicks.length === 0) {
+    return (
+      <div>
+        the app is used by pressing the buttons
+      </div>
+    )
+  }
 
-/*Funcion flecha sin parametros llamada App*/
-/*Como la esta funcion tiene solo una expresion se puede escribir sin el return*/
-/*const App = () => ( 
-  <div>
-    <p>Hello world</p> 
-  </div>
-)*/
-
-//example 2
-/*JSX permite escribir etiqutas de html,este se incluye por efecto con create-react-app*/
-/*const App = () => {
-  const now = new Date()
-  const a = 10
-  const b = 20
   return (
     <div>
-      <p>Hello world, it is {now.toString()}</p>
-      <p>
-        {a} plus {b} is {a+b}
-      </p>
+      button press history: {props.allClicks.join(' ')}
     </div>
-  )
-}*/
-
-//example 3
-/*const Hello = () => {  
-  return (    
-    <div>      
-      <p>Hello world</p>    
-    </div>  
   )
 }
 
-[>Hemos definido un nuevo componente Hello y lo usamos dentro del componente App. <]
+const Button = (props) => { 
+  console.log('props value is', props)  
+  const { onClick, text } = props
+  return (
+    <button onClick={onClick}>
+      {text}
+    </button>
+  )
+}
+
 const App = () => {
-  return (
-    <div>
-      <h1>Greetings</h1>
-      <Hello />    
-      <Hello />    
-      <Hello />    
-    </div>
-  )
-}*/
+  const [left, setLeft] = useState(0)
+  const [right, setRight] = useState(0)
+  const [allClicks, setAll] = useState([])
 
-//example 4
-//Es posible pasar datos a componentes usando los llamados props.
-const Hello = (props) => {  
-  return (    
-    <div>      
-      <p>Hello {props.name}, you are {props.age} years old</p>    
-    </div>  
-  )
-}
+  const handleLeftClick = () => {
+    setAll(allClicks.concat('L'))
+    setLeft(left + 1)
+  }
 
-/*Nombres de los componentes con primera en mayuscula*/
-const App = () => {
-  const name = 'Peter'
-  const age = 10
+  const handleRightClick = () => {
+    setAll(allClicks.concat('R'))
+    setRight(right + 1)
+  }
+
+  /*debugger*/
 
   return (
     <div>
-      <h1>Greetings</h1>
-      <Hello name="Maya" age={26+age}/>    
-      <Hello name={name} age={age}/>    
+      {left}
+      <Button onClick={handleLeftClick} text='left'/>
+      <Button onClick={handleRightClick} text='right'/>
+      {right}
+      <History allClicks={allClicks} />
     </div>
   )
 }
 
-
-/*Se evalúa cualquier código JavaScript entre llaves y el resultado de esta evaluación se incrusta en el lugar definido en el HTML producido por el componente. */
-/*Componente de react con el nombre App, y el comando en la linea final*/
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <App />, 
+  document.getElementById('root')
+)

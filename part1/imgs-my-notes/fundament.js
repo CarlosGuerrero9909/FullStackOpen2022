@@ -73,7 +73,7 @@ object1.address = 'Helsinki'
 object1['secret number'] = 12341*/
 
 //FUNCIONES
-//funcion flecha
+/*//funcion flecha
 const sum = (p1, p2) => { //si hubiese un solo parametro se pueden excluir los parentesis de la definicion 
   console.log (p1) 
   console.log (p2) 
@@ -106,4 +106,52 @@ const average = function(a, b) {
 }
 
 const result2 = average(2, 5)
-// result is now 3.5
+// result is now 3.5*/
+
+//METODOS DE OBJETO Y THIS
+//Podemos asignar métodos a un objeto definiendo propiedades que son funciones:
+/*const arto = {
+  name: 'Arto Hellas',
+  age: 35,
+  education: 'PhD',
+  greet: function() {    
+    console.log('hello, my name is ' + this.name)  
+  },
+  doAddition: function(a, b) {    
+    console.log(a + b)  
+  },
+}
+arto.greet()  // "hello, my name is Arto Hellas" es impreso
+
+//Los métodos se pueden asignar a los objetos incluso después de la creación del objeto:
+arto.growOlder = function() {  
+  this.age += 1
+}
+console.log(arto.age)   // 35 es impreso
+arto.growOlder()
+console.log(arto.age)   // 36 es impreso
+
+arto.doAddition(1, 4)        // 5 es impreso
+//El método se llama de la forma habitual, utilizando el objeto arto.doAddition(1, 4) o almacenando una referencia de método en una variable y llamando al método a través de la variable: referenceToAddition(10, 15)
+const referenceToAddition = arto.doAddition //referencia de metodo en una variable
+referenceToAddition(10, 15)   // 25 es impreso*/
+
+//  CLASES
+//  En el siguiente ejemplo definimos una "clase" llamada Person y dos objetos Person:
+class Person {
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+  greet() {
+    console.log('hello, my name is ' + this.name)
+  }
+}
+
+const adam = new Person('Adam Ondra', 35)
+adam.greet()
+
+const janja = new Person('Janja Garnbret', 22)
+janja.greet()
+
+
