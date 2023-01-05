@@ -43,6 +43,12 @@ const App = () => {
             setMessage(null)
           }, 5000)
         })
+        .catch(error => {
+          setErrorMessage(error.response.data.error)
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
+        })
       resetFields()
     } 
     else if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
@@ -70,24 +76,8 @@ const App = () => {
       resetFields()
     } 
     else {
-      const newContact = {
-        name: newName,
-        number: newNumber,
-      }
-      contactService
-        .create(newContact)
-        .then(createdContact => {
-          setContacts(contacts.concat(createdContact))
-          setMessage(
-            `Update ${newContact.name}`
-          )
-          setTimeout(() => {
-            setMessage(null)
-          }, 5000)
-        })
       resetFields()
     }
-
   }
 
   const deleteContact = (id, name) => {
@@ -106,7 +96,10 @@ const App = () => {
     }
   }
 
-  const handleNewName = (event) => setNewName(event.target.value)
+  const handleNewName = (event) => {
+    setNewName(event.target.value)
+    console.log(newName)
+  }
   const handleNewNumber = (event) => setNewNumber(event.target.value)
   const handleFilterName = (event) => setFilterName(event.target.value)
 

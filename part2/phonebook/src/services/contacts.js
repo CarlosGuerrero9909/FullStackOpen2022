@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:3001/contacts'
+const baseURL = '/api/persons'
 
 const getAll = () => {
   return (
