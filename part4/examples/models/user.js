@@ -1,12 +1,12 @@
 // Define el modelo para representar a un usuario
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 // validador para verificar la unicidad de un campo
-const uniqueValidator = require('mongoose-unique-validator');
+const uniqueValidator = require('mongoose-unique-validator')
 
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    unique: true,
+    unique: true
   },
   name: String,
   // ¡Nunca es aconsejable almacenar contraseñas de texto plano sin cifrar en la base de datos!
@@ -17,22 +17,22 @@ const userSchema = new mongoose.Schema({
   notes: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Note',
-    },
-  ],
-});
+      ref: 'Note'
+    }
+  ]
+})
 
-userSchema.plugin(uniqueValidator);
+userSchema.plugin(uniqueValidator)
 
 userSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString();
-    delete returnedObject._id;
-    delete returnedObject.__v;
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
     // the passwordHash should not be revealed
-    delete returnedObject.passwordHash;
-  },
-});
+    delete returnedObject.passwordHash
+  }
+})
 
-const user = mongoose.model('User', userSchema);
-module.exports = user;
+const user = mongoose.model('User', userSchema)
+module.exports = user
