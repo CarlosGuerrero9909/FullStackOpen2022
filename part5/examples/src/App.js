@@ -29,7 +29,7 @@ const App = () => {
     const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')    
     if (loggedUserJSON) {      
       const user = JSON.parse(loggedUserJSON) //cuando se lee un objeto JSON del almacenamiento local, debe parsearse de nuevo a JavaScript con JSON.parse.     
-      setUser(user)      
+      setUser(user)
       noteService.setToken(user.token)    
     }  
   }, [])
